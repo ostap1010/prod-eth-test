@@ -3,7 +3,7 @@ jobs:
   build:
     image: node
     script:
-      - npnstall truffle
+      - npm i truffle
       - npm install
       - ./node_modules/.bin/truffle compile
       - ./node_modules/.bin/truffle test
@@ -14,7 +14,7 @@ jobs:
     image: 'alpine:3.10'
     script:
       - apk add curl
-      - curl http://hello
+      - curhttp://hello
 
 stages:
   - just_test:
