@@ -1,0 +1,26 @@
+version: 1
+jobs:
+  build:
+    image: node
+    script:
+      - npm install truffle
+      - npm install
+      - ./node_modules/.bin/truffle compile
+      - ./node_modules/.bin/truffle test
+  test:
+    services:
+      - name: strm/helloworld-http
+        alias: hello
+    image: 'alpine:3.10'
+    script:
+      - apk add curl
+      - curl http://hello
+
+stages:
+  - just_test:
+      jobs:
+        - test
+  - just_build:
+      jobs:
+        - build:
+            when: manual
